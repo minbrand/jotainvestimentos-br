@@ -1,1374 +1,271 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jota Investimentos - Construção Imobiliária no Nordeste</title>
-    <link rel="icon" type="image/x-icon" href="https://jotainvestimentos.com/images/uFbadW7394748.svg">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        /* Reset e estilos gerais */
-        :root {
-            --primary: #e63946;
-            --primary-dark: #c1121f;
-            --secondary: #14213d;
-            --secondary-light: #2a3c6e;
-            --accent: #fca311;
-            --light: #f8f9fa;
-            --dark: #222;
-            --gray: #6c757d;
-            --light-gray: #e9ecef;
-            --transition: all 0.3s ease;
-            --shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-            --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.15);
-            --border-radius: 10px;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-        }
-        
-        body {
-            color: var(--dark);
-            line-height: 1.6;
-            background-color: var(--light);
-            overflow-x: hidden;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        section {
-            padding: 80px 0;
-            position: relative;
-        }
-        
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background-color: var(--primary);
-            color: white;
-            padding: 14px 28px;
-            text-decoration: none;
-            font-weight: 700;
-            border-radius: var(--border-radius);
-            transition: var(--transition);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 14px;
-            border: none;
-            cursor: pointer;
-            gap: 8px;
-            box-shadow: var(--shadow);
-        }
-        
-        .btn:hover {
-            background-color: var(--primary-dark);
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-lg);
-        }
-        
-        h1, h2, h3, h4 {
-            font-weight: 800;
-            line-height: 1.2;
-            margin-bottom: 15px;
-        }
-        
-        h1 {
-            font-size: 2.2rem;
-            color: var(--secondary);
-        }
-        
-        h2 {
-            font-size: 1.8rem;
-            color: var(--secondary);
-            text-align: center;
-            margin-bottom: 40px;
-            position: relative;
-        }
-        
-        h2:after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 4px;
-            background-color: var(--primary);
-            border-radius: 2px;
-        }
-        
-        h3 {
-            font-size: 1.4rem;
-            color: var(--secondary);
-        }
-        
-        p {
-            margin-bottom: 15px;
-            font-size: 1rem;
-            color: var(--gray);
-        }
-        
-        .section-subtitle {
-            text-align: center;
-            font-size: 1rem;
-            color: var(--gray);
-            max-width: 100%;
-            margin: 0 auto 30px;
-            padding: 0 10px;
-        }
-        
-        /* Header */
-        header {
-            background-color: rgba(20, 33, 61, 0.98);
-            padding: 15px 0;
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            transition: var(--transition);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 15px;
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .logo img {
-            height: 35px;
-            filter: brightness(0) invert(1);
-        }
-        
-        .logo-text {
-            color: white;
-            font-size: 1.1rem;
-            font-weight: 700;
-            display: none;
-        }
-        
-        /* Menu Desktop - OCULTAR NO MOBILE */
-        nav.desktop-menu {
-            display: none;
-        }
-        
-        /* Menu Mobile - MOSTRAR NO MOBILE */
-        .mobile-menu-btn {
-            display: block;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 22px;
-            cursor: pointer;
-            z-index: 1001;
-        }
-        
-        .mobile-menu {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background-color: var(--secondary);
-            padding: 80px 20px 30px;
-            z-index: 1000;
-            overflow-y: auto;
-        }
-        
-        .mobile-menu.active {
-            display: block;
-        }
-        
-        .mobile-menu-close {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 24px;
-            cursor: pointer;
-        }
-        
-        .mobile-menu ul {
-            list-style: none;
-        }
-        
-        .mobile-menu li {
-            margin-bottom: 15px;
-        }
-        
-        .mobile-menu a {
-            color: white;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            display: block;
-            padding: 12px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            transition: var(--transition);
-        }
-        
-        .mobile-menu a:hover {
-            color: var(--primary);
-            padding-left: 10px;
-        }
-        
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, rgba(20, 33, 61, 0.9) 0%, rgba(20, 33, 61, 0.7) 100%), url('https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
-            background-size: cover;
-            background-position: center;
-            background-attachment: scroll;
-            color: white;
-            padding: 140px 0 60px;
-            min-height: auto;
-            display: flex;
-            align-items: center;
-        }
-        
-        .hero-content {
-            max-width: 100%;
-            padding: 0 10px;
-        }
-        
-        .hero h1 {
-            color: white;
-            margin-bottom: 20px;
-            font-size: 2rem;
-        }
-        
-        .hero p {
-            font-size: 1.1rem;
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 30px;
-            font-weight: 300;
-        }
-        
-        .hero-features {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            margin-top: 30px;
-        }
-        
-        .hero-feature {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 0.95rem;
-        }
-        
-        .hero-feature i {
-            color: var(--accent);
-            font-size: 1.1rem;
-        }
-        
-        /* Oportunidade Section */
-        .oportunidade {
-            background-color: white;
-            padding: 60px 0;
-        }
-        
-        .oportunidade-content {
-            display: flex;
-            flex-direction: column;
-            gap: 40px;
-        }
-        
-        .oportunidade-image {
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            height: 250px;
-            width: 100%;
-        }
-        
-        .oportunidade-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .oportunidade-stats {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            margin-top: 30px;
-        }
-        
-        .stat {
-            text-align: center;
-            padding: 20px 10px;
-            background-color: var(--light-gray);
-            border-radius: var(--border-radius);
-        }
-        
-        .stat-number {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--primary);
-            margin-bottom: 5px;
-        }
-        
-        .stat-text {
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: var(--secondary);
-        }
-        
-        /* Como Funciona Section */
-        .como-funciona {
-            background-color: var(--light);
-            padding: 60px 0;
-        }
-        
-        .passos {
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-        }
-        
-        .passo {
-            background-color: white;
-            padding: 30px 20px;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .passo:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background-color: var(--primary);
-        }
-        
-        .passo-icon {
-            width: 70px;
-            height: 70px;
-            background-color: rgba(230, 57, 70, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-        }
-        
-        .passo-icon i {
-            font-size: 2rem;
-            color: var(--primary);
-        }
-        
-        .passo-number {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            font-size: 2.5rem;
-            font-weight: 900;
-            color: rgba(20, 33, 61, 0.05);
-        }
-        
-        /* Vantagens Section */
-        .vantagens {
-            background-color: white;
-            padding: 60px 0;
-        }
-        
-        .vantagens-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-        
-        .vantagem {
-            display: flex;
-            gap: 15px;
-            padding: 20px;
-            background-color: var(--light-gray);
-            border-radius: var(--border-radius);
-            align-items: flex-start;
-        }
-        
-        .vantagem-icon {
-            flex-shrink: 0;
-            width: 50px;
-            height: 50px;
-            background-color: var(--primary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .vantagem-icon i {
-            font-size: 1.2rem;
-            color: white;
-        }
-        
-        .vantagem-content h3 {
-            font-size: 1.2rem;
-            margin-bottom: 8px;
-        }
-        
-        .vantagem-content p {
-            font-size: 0.9rem;
-        }
-        
-        /* Destaques Section */
-        .destaques {
-            background-color: var(--secondary);
-            color: white;
-            padding: 60px 0;
-        }
-        
-        .destaques h2 {
-            color: white;
-        }
-        
-        .destaques-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-        }
-        
-        .destaque {
-            text-align: center;
-            padding: 25px 15px;
-            background-color: rgba(255, 255, 255, 0.05);
-            border-radius: var(--border-radius);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .destaque i {
-            font-size: 2.2rem;
-            color: var(--accent);
-            margin-bottom: 15px;
-        }
-        
-        .destaque-numero {
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: white;
-            margin-bottom: 8px;
-        }
-        
-        .destaque-texto {
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.8);
-        }
-        
-        /* Galeria Section */
-        .galeria {
-            padding: 60px 0;
-            background-color: var(--light);
-        }
-        
-        .galeria h2 {
-            margin-bottom: 30px;
-        }
-        
-        .galeria-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-        }
-        
-        .galeria-item {
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            height: 150px;
-            position: relative;
-        }
-        
-        .galeria-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        /* Call to Action */
-        .cta {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            color: white;
-            text-align: center;
-            padding: 60px 0;
-        }
-        
-        .cta h2 {
-            color: white;
-            font-size: 1.8rem;
-        }
-        
-        .cta p {
-            font-size: 1.1rem;
-            max-width: 100%;
-            margin: 0 auto 30px;
-            color: rgba(255, 255, 255, 0.9);
-            padding: 0 10px;
-        }
-        
-        .cta .btn {
-            background-color: white;
-            color: var(--primary);
-            font-size: 1rem;
-            padding: 16px 30px;
-        }
-        
-        /* Footer */
-        footer {
-            background-color: var(--secondary);
-            color: white;
-            padding: 50px 0 20px;
-        }
-        
-        .footer-content {
-            display: flex;
-            flex-direction: column;
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-        
-        .footer-logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 15px;
-        }
-        
-        .footer-logo img {
-            height: 35px;
-            filter: brightness(0) invert(1);
-        }
-        
-        .footer-logo-text {
-            font-size: 1.2rem;
-            font-weight: 700;
-        }
-        
-        .footer-about p {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 0.9rem;
-        }
-        
-        .footer-links h3, .footer-contato h3 {
-            font-size: 1.2rem;
-            margin-bottom: 20px;
-            color: white;
-            position: relative;
-            padding-bottom: 8px;
-        }
-        
-        .footer-links h3:after, .footer-contato h3:after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 40px;
-            height: 3px;
-            background-color: var(--primary);
-        }
-        
-        .footer-links ul {
-            list-style: none;
-        }
-        
-        .footer-links li {
-            margin-bottom: 10px;
-        }
-        
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .footer-contato p {
-            color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.9rem;
-        }
-        
-        .footer-contato i {
-            color: var(--primary);
-            width: 18px;
-        }
-        
-        .social-links {
-            display: flex;
-            gap: 12px;
-            margin-top: 15px;
-        }
-        
-        .social-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 36px;
-            height: 36px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            color: white;
-            font-size: 1rem;
-        }
-        
-        .copyright {
-            text-align: center;
-            padding-top: 25px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 0.8rem;
-        }
-        
-        /* Tablet - a partir de 768px */
-        @media (min-width: 768px) {
-            .container {
-                padding: 0 20px;
-            }
-            
-            h1 {
-                font-size: 2.8rem;
-            }
-            
-            h2 {
-                font-size: 2.2rem;
-            }
-            
-            h3 {
-                font-size: 1.6rem;
-            }
-            
-            p {
-                font-size: 1.05rem;
-            }
-            
-            .logo-text {
-                display: block;
-                font-size: 1.3rem;
-            }
-            
-            .logo img {
-                height: 40px;
-            }
-            
-            .hero {
-                padding: 160px 0 80px;
-                min-height: 80vh;
-            }
-            
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero p {
-                font-size: 1.2rem;
-            }
-            
-            .hero-features {
-                flex-direction: row;
-                flex-wrap: wrap;
-                gap: 20px;
-            }
-            
-            .oportunidade-content {
-                flex-direction: row;
-                align-items: center;
-                gap: 50px;
-            }
-            
-            .oportunidade-image {
-                height: 350px;
-                flex: 1;
-            }
-            
-            .oportunidade-stats {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 20px;
-            }
-            
-            .passos {
-                flex-direction: row;
-                gap: 25px;
-            }
-            
-            .passo {
-                padding: 35px 20px;
-            }
-            
-            .vantagens-grid {
-                display: grid;
-                grid-template-columns: repeat(2, 1fr);
-                gap: 25px;
-            }
-            
-            .destaques-grid {
-                grid-template-columns: repeat(4, 1fr);
-                gap: 25px;
-            }
-            
-            .galeria-grid {
-                grid-template-columns: repeat(4, 1fr);
-                gap: 20px;
-            }
-            
-            .galeria-item {
-                height: 180px;
-            }
-            
-            .footer-content {
-                flex-direction: row;
-                justify-content: space-between;
-            }
-            
-            .footer-content > div {
-                flex: 1;
-            }
-        }
-        
-        /* Desktop - a partir de 992px */
-        @media (min-width: 992px) {
-            .mobile-menu-btn {
-                display: none;
-            }
-            
-            nav.desktop-menu {
-                display: block;
-            }
-            
-            nav.desktop-menu ul {
-                display: flex;
-                list-style: none;
-                gap: 25px;
-                align-items: center;
-            }
-            
-            nav.desktop-menu a {
-                color: white;
-                text-decoration: none;
-                font-weight: 600;
-                transition: var(--transition);
-                position: relative;
-                padding: 5px 0;
-                font-size: 0.95rem;
-            }
-            
-            nav.desktop-menu a:after {
-                content: '';
-                position: absolute;
-                bottom: 0;
-                left: 0;
-                width: 0;
-                height: 2px;
-                background-color: var(--primary);
-                transition: var(--transition);
-            }
-            
-            nav.desktop-menu a:hover:after {
-                width: 100%;
-            }
-            
-            nav.desktop-menu a:hover {
-                color: var(--primary);
-            }
-            
-            .mobile-menu {
-                display: none !important;
-            }
-            
-            .logo-text {
-                font-size: 1.5rem;
-            }
-            
-            .hero {
-                padding: 180px 0 100px;
-                min-height: 100vh;
-                background-attachment: fixed;
-            }
-            
-            .hero h1 {
-                font-size: 3.2rem;
-            }
-            
-            .hero p {
-                font-size: 1.3rem;
-            }
-            
-            section {
-                padding: 100px 0;
-            }
-            
-            h1 {
-                font-size: 3.5rem;
-            }
-            
-            h2 {
-                font-size: 2.5rem;
-            }
-            
-            h3 {
-                font-size: 1.8rem;
-            }
-            
-            .oportunidade-image {
-                height: 450px;
-            }
-            
-            .oportunidade-stats {
-                gap: 25px;
-            }
-            
-            .stat {
-                padding: 25px 15px;
-            }
-            
-            .stat-number {
-                font-size: 2rem;
-            }
-            
-            .passos {
-                gap: 40px;
-            }
-            
-            .passo {
-                padding: 50px 30px;
-            }
-            
-            .vantagens-grid {
-                grid-template-columns: repeat(4, 1fr);
-                gap: 30px;
-            }
-            
-            .vantagem {
-                padding: 30px;
-            }
-            
-            .destaques-grid {
-                gap: 40px;
-            }
-            
-            .destaque {
-                padding: 40px 20px;
-            }
-            
-            .destaque-numero {
-                font-size: 2.5rem;
-            }
-            
-            .galeria-grid {
-                gap: 25px;
-            }
-            
-            .galeria-item {
-                height: 220px;
-            }
-            
-            .cta {
-                padding: 100px 0;
-            }
-            
-            .cta h2 {
-                font-size: 2.5rem;
-            }
-            
-            .cta p {
-                font-size: 1.2rem;
-                max-width: 800px;
-            }
-        }
-        
-        /* Telas grandes - a partir de 1200px */
-        @media (min-width: 1200px) {
-            .container {
-                padding: 0;
-            }
-            
-            .hero h1 {
-                font-size: 3.8rem;
-            }
-            
-            .hero p {
-                font-size: 1.4rem;
-            }
-            
-            .oportunidade-image {
-                height: 500px;
-            }
-            
-            .vantagens-grid {
-                grid-template-columns: repeat(4, 1fr);
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Em breve novo site - Jota Investimentos</title>
+  <!-- Font Awesome 6 (ícones sociais) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #2a2a2a;
+      font-family: system-ui, 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+      color: #f0f0f0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.3;
+    }
+
+    /* Área principal que ocupa todo o espaço disponível e centraliza o conteúdo */
+    .main-content {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.5rem;
+    }
+
+    /* Bloco central com todo o texto + logo */
+    .hero {
+      text-align: center;
+      max-width: 90%;
+      width: 100%;
+      animation: fadeInUp 0.7s ease-out;
+    }
+
+    /* Texto acima da logo */
+    .text-above {
+      font-size: 1.6rem;
+      letter-spacing: -0.3px;
+      font-weight: 400;
+      color: #e0e0e0;
+      margin-bottom: 1.8rem;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.2);
+      display: inline-block;
+      padding-bottom: 0.5rem;
+    }
+
+    /* --- LOGO (visual marcante e personalizado) --- */
+    .logo-wrapper {
+      margin: 2.2rem 0;
+      display: flex;
+      justify-content: center;
+      align-items: baseline;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      transition: transform 0.2s ease;
+    }
+
+    .logo-icon {
+      font-size: 4.2rem;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+      background: linear-gradient(145deg, #FFD966, #FFB347);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      display: inline-block;
+      line-height: 1;
+    }
+
+    .logo-text {
+      font-size: 3.2rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #FFFFFF, #D4AF37);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      text-shadow: 0 2px 3px rgba(0,0,0,0.2);
+      font-family: inherit;
+    }
+
+    /* adaptação para telas pequenas: logo menor mas ainda impactante */
+    @media (max-width: 550px) {
+      .logo-icon {
+        font-size: 2.8rem;
+      }
+      .logo-text {
+        font-size: 2.4rem;
+      }
+      .text-above {
+        font-size: 1.3rem;
+      }
+      .text-below {
+        font-size: 1.1rem;
+      }
+      .social-links a {
+        font-size: 1.7rem;
+        margin: 0 0.8rem;
+      }
+    }
+
+    /* Texto logo abaixo da logo */
+    .text-below {
+      font-size: 1.3rem;
+      font-weight: 400;
+      margin-top: 1.8rem;
+      color: #cbcbcb;
+      background: rgba(255,255,255,0.05);
+      display: inline-block;
+      padding: 0.5rem 1.2rem;
+      border-radius: 40px;
+      backdrop-filter: blur(2px);
+    }
+
+    /* Rodapé profissional com ícones + créditos */
+    footer {
+      background-color: #1e1e1e;
+      padding: 1.8rem 1rem 1.5rem;
+      text-align: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      margin-top: auto;
+    }
+
+    /* container dos ícones sociais */
+    .social-links {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+      margin-bottom: 1.2rem;
+      flex-wrap: wrap;
+    }
+
+    .social-links a {
+      color: #e2e2e2;
+      font-size: 2rem;
+      transition: all 0.2s ease-in-out;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-color: rgba(255, 255, 255, 0.03);
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      text-decoration: none;
+      backdrop-filter: blur(4px);
+    }
+
+    .social-links a:hover {
+      color: #ffffff;
+      transform: translateY(-4px);
+      background-color: rgba(255, 180, 60, 0.2);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    /* estilo específico para cada ícone com leve cor no hover (opcional) */
+    .social-links a:nth-child(1):hover { color: #E4405F; }  /* instagram vibe */
+    .social-links a:nth-child(2):hover { color: #FF0000; }  /* youtube */
+    .social-links a:nth-child(3):hover { color: #26A5E4; }  /* telegram */
+
+    /* crédito "Site feito pela minbrand" */
+    .credit {
+      font-size: 0.85rem;
+      letter-spacing: 0.3px;
+      color: #aaa;
+      margin-top: 0.6rem;
+    }
+
+    .credit a {
+      color: #D4AF37;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+      border-bottom: 1px dotted #D4AF37;
+    }
+
+    .credit a:hover {
+      color: #FFD966;
+      border-bottom-color: #FFD966;
+    }
+
+    /* animação suave de entrada */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ajuste de acessibilidade e foco */
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid #FFB347;
+      outline-offset: 4px;
+      border-radius: 30px;
+    }
+
+    /* melhora responsividade geral */
+    @media (max-width: 480px) {
+      .hero {
+        max-width: 95%;
+      }
+      .logo-wrapper {
+        gap: 0.3rem;
+        margin: 1.5rem 0;
+      }
+      .social-links a {
+        width: 46px;
+        height: 46px;
+        font-size: 1.6rem;
+      }
+      .text-above {
+        margin-bottom: 1rem;
+      }
+    }
+  </style>
 </head>
 <body>
-    <!-- Header -->
-    <header id="header">
-        <div class="container header-container">
-            <div class="logo">
-                <img src="https://jotainvestimentos.com/images/uFbadW7394748.svg" alt="Jota Investimentos">
-                <!--<span class="logo-text">JOTA INVESTIMENTOS</span>-->
-            </div>
-            
-            <!-- Menu Mobile - VISÍVEL APENAS NO MOBILE -->
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
-                <i class="fas fa-bars"></i>
-            </button>
-            
-            <!-- Menu Desktop - VISÍVEL APENAS NO DESKTOP -->
-            <nav class="desktop-menu">
-                <ul>
-                    <li><a href="#oportunidade">OPORTUNIDADE</a></li>
-                    <li><a href="#como-funciona">COMO FUNCIONA</a></li>
-                    <li><a href="#vantagens">VANTAGENS</a></li>
-                    <li><a href="#galeria">GALERIA</a></li>
-                    <li><a href="#contato" class="btn">INVESTIR AGORA</a></li>
-                </ul>
-            </nav>
-        </div>
-        
-        <!-- Menu Mobile - OCULTO NO DESKTOP -->
-        <div class="mobile-menu" id="mobileMenu">
-            <button class="mobile-menu-close" id="mobileMenuClose">
-                <i class="fas fa-times"></i>
-            </button>
-            <ul>
-                <li><a href="#oportunidade">OPORTUNIDADE</a></li>
-                <li><a href="#como-funciona">COMO FUNCIONA</a></li>
-                <li><a href="#vantagens">VANTAGENS</a></li>
-                <li><a href="#galeria">GALERIA</a></li>
-                <li><a href="#contato" class="btn">INVESTIR AGORA</a></li>
-            </ul>
-        </div>
-    </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1>LUCRE COM A CONSTRUÇÃO NO NORDESTE</h1>
-                <p>Invista em empreendimentos imobiliários com demanda garantida e receba lucros à medida que as unidades são vendidas. Oportunidade real, retorno tangível.</p>
-                <a href="#oportunidade" class="btn">
-                    <i class="fas fa-chart-line"></i>
-                    CONHEÇA A OPORTUNIDADE
-                </a>
-                
-                <div class="hero-features">
-                    <div class="hero-feature">
-                        <i class="fas fa-check-circle"></i>
-                        <span>Processo rápido e transparente</span>
-                    </div>
-                    <div class="hero-feature">
-                        <i class="fas fa-check-circle"></i>
-                        <span>Demanda garantida pelo Minha Casa Minha Vida</span>
-                    </div>
-                    <div class="hero-feature">
-                        <i class="fas fa-check-circle"></i>
-                        <span>Retorno escalável com liquidez mensal</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+  <div class="main-content">
+    <div class="hero">
+      <!-- Texto acima da logo -->
+      <div class="text-above">
+        em breve um novo site
+      </div>
 
-    <!-- Oportunidade Section -->
-    <section id="oportunidade" class="oportunidade">
-        <div class="container">
-            <h2>A OPORTUNIDADE QUE O MERCADO OFERECE</h2>
-            <p class="section-subtitle">O programa Minha Casa Minha Vida criou uma demanda massiva por habitação popular no Nordeste. Famílias de baixa renda estão prontas para comprar. Nós financiamos a construção. Você lucra.</p>
-            
-            <div class="oportunidade-content">
-                <div class="oportunidade-image">
-                    <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=2073&q=80" alt="Construção civil no Nordeste">
-                </div>
-                <div>
-                    <h3>MERCADO EM CRESCIMENTO CONSTANTE</h3>
-                    <p>Enquanto a população cresce, o déficit habitacional no Nordeste brasileiro continua aumentando. Mais de 1,5 milhão de famílias aguardam por uma moradia digna.</p>
-                    <p>Com o programa Minha Casa Minha Vida garantindo a demanda, construímos prédios e casas populares que se vendem antes mesmo da obra terminar.</p>
-                    <p>Você, como investidor, entra como financiador da obra em formato de cotas. Conforme as unidades são vendidas, distribuímos os lucros proporcionalmente.</p>
-                    
-                    <div class="oportunidade-stats">
-                        <div class="stat">
-                            <div class="stat-number">1.5M+</div>
-                            <div class="stat-text">Famílias no Nordeste aguardam moradia</div>
-                        </div>
-                       
-                        <div class="stat">
-                            <div class="stat-number">100%</div>
-                            <div class="stat-text">Transparência nas operações</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+      <!-- LOGO principal (ícone + nome minbrand) -->
+      <div class="logo-wrapper">
+        <img src="images/logo.svg" alt="Logo" class="logo-icon">
+      </div>
 
-    <!-- Como Funciona Section -->
-    <section id="como-funciona" class="como-funciona">
-        <div class="container">
-            <h2>COMO FUNCIONA O INVESTIMENTO</h2>
-            <p class="section-subtitle">Um processo simples e transparente, do investimento à distribuição de lucros</p>
-            
-            <div class="passos">
-                <div class="passo">
-                    <div class="passo-number">01</div>
-                    <div class="passo-icon">
-                        <i class="fas fa-hand-holding-usd"></i>
-                    </div>
-                    <h3>VOCÊ INVESTE EM COTAS</h3>
-                    <p>Você financia parte da construção através de cotas. Seu investimento é garantido pela obra e pelos imóveis em construção.</p>
-                </div>
-                <div class="passo">
-                    <div class="passo-number">02</div>
-                    <div class="passo-icon">
-                        <i class="fas fa-hard-hat"></i>
-                    </div>
-                    <h3>OBRA AVANÇA</h3>
-                    <p>Nós executamos a construção com qualidade. Você acompanha o progresso. Famílias começam a comprar as unidades.</p>
-                </div>
-                <div class="passo">
-                    <div class="passo-number">03</div>
-                    <div class="passo-icon">
-                        <i class="fas fa-chart-pie"></i>
-                    </div>
-                    <h3>VOCÊ RECEBE LUCROS</h3>
-                    <p>A cada venda, você recebe sua parte proporcional dos lucros. Distribuição transparente e periódica.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+      <!-- Texto abaixo da logo -->
 
-    <!-- Vantagens Section -->
-    <section id="vantagens" class="vantagens">
-        <div class="container">
-            <h2>POR QUE INVESTIR CONOSCO</h2>
-            <p class="section-subtitle">Vantagens exclusivas que fazem da Jota Investimentos a melhor escolha</p>
-            
-            <div class="vantagens-grid">
-                <div class="vantagem">
-                    <div class="vantagem-icon">
-                        <i class="fas fa-home"></i>
-                    </div>
-                    <div class="vantagem-content">
-                        <h3>MERCADO DE BAIXA RENDA É RESILIENTE</h3>
-                        <p>Sempre há demanda por habitação popular, independente da situação econômica.</p>
-                    </div>
-                </div>
-                <div class="vantagem">
-                    <div class="vantagem-icon">
-                        <i class="fas fa-file-contract"></i>
-                    </div>
-                    <div class="vantagem-content">
-                        <h3>PROGRAMA MINHA CASA MINHA VIDA</h3>
-                        <p>Garante poder de compra às famílias, reduzindo riscos para investidores.</p>
-                    </div>
-                </div>
-                <div class="vantagem">
-                    <div class="vantagem-icon">
-                        <i class="fas fa-map-marked-alt"></i>
-                    </div>
-                    <div class="vantagem-content">
-                        <h3>NORDESTE EM EXPANSÃO</h3>
-                        <p>Região com maior potencial de crescimento imobiliário no Brasil.</p>
-                    </div>
-                </div>
-                <div class="vantagem">
-                    <div class="vantagem-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <div class="vantagem-content">
-                        <h3>RETORNO TANGÍVEL</h3>
-                        <p>Lucro real e mensurável, não promessas futuras.</p>
-                    </div>
-                </div>
-                <div class="vantagem">
-                    <div class="vantagem-icon">
-                        <i class="fas fa-eye"></i>
-                    </div>
-                    <div class="vantagem-content">
-                        <h3>TRANSPARÊNCIA TOTAL</h3>
-                        <p>Você sabe exatamente onde seu dinheiro está sendo aplicado.</p>
-                    </div>
-                </div>
-                <div class="vantagem">
-                    <div class="vantagem-icon">
-                        <i class="fas fa-layer-group"></i>
-                    </div>
-                    <div class="vantagem-content">
-                        <h3>DIVERSIFICAÇÃO</h3>
-                        <p>Múltiplos empreendimentos reduzem o risco do seu investimento.</p>
-                    </div>
-                </div>
-                <div class="vantagem">
-                    <div class="vantagem-icon">
-                        <i class="fas fa-coins"></i>
-                    </div>
-                    <div class="vantagem-content">
-                        <h3>LIQUIDEZ</h3>
-                        <p>Receba lucros conforme as vendas acontecem, não precisa esperar o fim da obra.</p>
-                    </div>
-                </div>
-                <div class="vantagem">
-                    <div class="vantagem-icon">
-                        <i class="fas fa-headset"></i>
-                    </div>
-                    <div class="vantagem-content">
-                        <h3>SUPORTE ESPECIALIZADO</h3>
-                        <p>Equipe dedicada para acompanhar seu investimento do início ao fim.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+      <div class="text-below">
+        aguarde
+      </div>
+    </div>
+  </div>
 
-    <!-- Destaques Section -->
-    <section class="destaques">
-        <div class="container">
-            <h2>POR QUE SOMOS A MELHOR ESCOLHA</h2>
-            
-            <div class="destaques-grid">
-                <div class="destaque">
-                    <i class="fas fa-money-bill-wave"></i>
-                    <div class="destaque-numero">R$ 0</div>
-                    <div class="destaque-texto">Sem intermediários desnecessários</div>
-                </div>
-                <div class="destaque">
-                    <i class="fas fa-eye"></i>
-                    <div class="destaque-numero">100%</div>
-                    <div class="destaque-texto">Transparência em cada etapa</div>
-                </div>
-                <div class="destaque">
-                    <i class="fas fa-map-pin"></i>
-                    <div class="destaque-numero">Nordeste</div>
-                    <div class="destaque-texto">Região com maior potencial</div>
-                </div>
-                <div class="destaque">
-                    <i class="fas fa-bolt"></i>
-                    <div class="destaque-numero">AGORA</div>
-                    <div class="destaque-texto">Comece seu investimento hoje</div>
-                </div>
-            </div>
-        </div>
-    </section>
+  <footer>
+    <!-- Ícones das redes sociais (Instagram, YouTube, Telegram) -->
+    <div class="social-links">
+      <a href="https://www.instagram.com/ojotainvestimentos" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+        <i class="fab fa-youtube"></i>
+      </a>
+      <a href="https://telegram.org/" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
+        <i class="fab fa-telegram"></i>
+      </a>
+    </div>
 
-    <!-- Galeria Section -->
-    <section id="galeria" class="galeria">
-        <div class="container">
-            <h2>NOSSOS EMPREENDIMENTOS</h2>
-            <p class="section-subtitle">Conheça alguns dos projetos que estão transformando o Nordeste e gerando retorno para nossos investidores</p>
-            
-            <div class="galeria-grid">
-                <div class="galeria-item">
-                    <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Empreendimento residencial">
-                </div>
-                <div class="galeria-item">
-                    <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Obra em andamento">
-                </div>
-                <div class="galeria-item">
-                    <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Casas populares">
-                </div>
-                <div class="galeria-item">
-                    <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Apartamentos finalizados">
-                </div>
-            </div>
-        </div>
-    </section>
+    <!-- crédito obrigatório: Site feito pela minbrand + link -->
+    <div class="credit">
+      Site feito pela <a href="https://minbrand.com" target="_blank" rel="noopener noreferrer">minbrand</a>
+    </div>
+  </footer>
 
-    <!-- Call to Action Section -->
-    <section id="contato" class="cta">
-        <div class="container">
-            <h2>PRONTO PARA INVESTIR?</h2>
-            <p>Não espere mais. O mercado está aquecido, as famílias estão prontas, e a oportunidade é agora. Invista em construção real e veja seu dinheiro trabalhar.</p>
-            <button id="contatoBtn" class="btn">
-                <i class="fas fa-rocket"></i>
-                COMEÇAR INVESTIMENTO
-            </button>
-            <p style="margin-top: 25px; font-size: 0.95rem;">Ou ligue: <strong>(85) 9 9748-9242</strong></p>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div>
-                    <div class="footer-logo">
-                        <img src="https://jotainvestimentos.com/images/uFbadW7394748.svg" alt="Jota Investimentos">
-                        <!--<span class="footer-logo-text">JOTA INVESTIMENTOS</span>-->
-                    </div>
-                    <div class="footer-about">
-                        <p>Oportunidade de investimento em construção imobiliária no Nordeste. Conectamos investidores a projetos reais que transformam vidas e geram retorno consistente.</p>
-                    </div>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#"><i class="fab fa-whatsapp"></i></a>
-                    </div>
-                </div>
-                <div class="footer-links">
-                    <h3>LINKS RÁPIDOS</h3>
-                    <ul>
-                        <li><a href="#oportunidade"><i class="fas fa-chevron-right"></i> Oportunidade</a></li>
-                        <li><a href="#como-funciona"><i class="fas fa-chevron-right"></i> Como Funciona</a></li>
-                        <li><a href="#vantagens"><i class="fas fa-chevron-right"></i> Vantagens</a></li>
-                        <li><a href="#galeria"><i class="fas fa-chevron-right"></i> Galeria</a></li>
-                        <li><a href="#contato"><i class="fas fa-chevron-right"></i> Contato</a></li>
-                    </ul>
-                </div>
-                <div class="footer-contato">
-                    <h3>CONTATO</h3>
-                    <p><i class="fas fa-envelope"></i> contato@jotainvestimentos.com.br</p>
-                    <p><i class="fas fa-phone"></i> (85) 9 9748-9242</p>
-                    <p><i class="fas fa-map-marker-alt"></i> Nordeste Brasileiro</p>
-                    <p><i class="fas fa-clock"></i> Seg-Sex: 9h-18h</p>
-                </div>
-            </div>
-            <div class="copyright">
-                <p>&copy; 2026 Jota Investimentos. Todos os direitos reservados.</p>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        // Menu mobile
-        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
-            document.getElementById('mobileMenu').classList.add('active');
-            document.body.style.overflow = 'hidden';
-        });
-        
-        document.getElementById('mobileMenuClose').addEventListener('click', function() {
-            document.getElementById('mobileMenu').classList.remove('active');
-            document.body.style.overflow = 'auto';
-        });
-        
-        // Fechar menu ao clicar em um link
-        document.querySelectorAll('#mobileMenu a').forEach(link => {
-            link.addEventListener('click', function() {
-                document.getElementById('mobileMenu').classList.remove('active');
-                document.body.style.overflow = 'auto';
-            });
-        });
-        
-        // Scroll suave para links internos
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                const href = this.getAttribute('href');
-                
-                if (href === '#') return;
-                
-                e.preventDefault();
-                
-                const targetElement = document.querySelector(href);
-                if (targetElement) {
-                    document.getElementById('mobileMenu').classList.remove('active');
-                    document.body.style.overflow = 'auto';
-                    
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 70,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-        
-        // Contato button
-        document.getElementById('contatoBtn').addEventListener('click', function() {
-            const phoneNumber = "85997489242";
-            const message = "Olá, gostaria de saber mais sobre as oportunidades de investimento da Jota Investimentos!";
-            const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-            
-            window.open(whatsappURL, '_blank');
-            
-            const originalText = this.innerHTML;
-            this.innerHTML = '<i class="fas fa-check"></i> WHATSAPP ABERTO!';
-            this.style.backgroundColor = '#25D366';
-            
-            setTimeout(() => {
-                this.innerHTML = originalText;
-                this.style.backgroundColor = '';
-            }, 3000);
-        });
-        
-        // Header scroll effect
-        window.addEventListener('scroll', function() {
-            const header = document.getElementById('header');
-            if (window.scrollY > 50) {
-                header.style.padding = '10px 0';
-                header.style.backgroundColor = 'rgba(20, 33, 61, 0.98)';
-            } else {
-                header.style.padding = '15px 0';
-                header.style.backgroundColor = 'rgba(20, 33, 61, 0.95)';
-            }
-        });
-        
-        // Animar números quando visíveis
-        function animateNumbers() {
-            const numberElements = document.querySelectorAll('.destaque-numero');
-            
-            numberElements.forEach(element => {
-                const rect = element.getBoundingClientRect();
-                const isVisible = (rect.top >= 0 && rect.bottom <= window.innerHeight);
-                
-                if (isVisible && !element.classList.contains('animated')) {
-                    element.classList.add('animated');
-                    
-                    if (element.textContent.includes('R$') || element.textContent.includes('%')) {
-                        const target = element.textContent;
-                        element.textContent = '0';
-                        
-                        let counter = 0;
-                        const increment = target === '100%' ? 1 : 10;
-                        const targetValue = target === '100%' ? 100 : 0;
-                        
-                        const timer = setInterval(() => {
-                            counter += increment;
-                            if (target === '100%') {
-                                element.textContent = counter + '%';
-                            } else if (target === 'R$ 0') {
-                                element.textContent = 'R$ ' + counter;
-                            }
-                            
-                            if (counter >= targetValue) {
-                                clearInterval(timer);
-                                element.textContent = target;
-                            }
-                        }, 30);
-                    }
-                }
-            });
-        }
-        
-        window.addEventListener('scroll', animateNumbers);
-        window.addEventListener('load', animateNumbers);
-    </script>
 </body>
 </html>
